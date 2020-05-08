@@ -281,7 +281,7 @@ $@"                      {amount} loaves of {pastryType} added to your cart.");
 
       decimal totalPricetag = newPastryPrice + newBreadTotal;
 
-      Console.WriteLine(
+      WriteFullLine(
 $@"                         Your total bread price before discounts is: ${breadTotal}
                          Your total bread price after discounts is: ${newBreadTotal}
                          Your total pastry price before discounts is: ${pastryTotal}
@@ -297,5 +297,21 @@ $@"                         Your total bread price before discounts is: ${breadT
 
       Console.ReadLine();
     }
+
+    static void WriteFullLine(string value)
+    {
+      //
+      // This method writes an entire line to the console with the string.
+      //
+      Console.BackgroundColor = ConsoleColor.DarkGreen;
+      Console.ForegroundColor = ConsoleColor.White;
+      Console.WriteLine(value.PadRight(Console.WindowWidth - 1)); // <-- see note
+                                                                  //
+                                                                  // Reset the color.
+                                                                  //
+      Console.ResetColor();
+    }
+
+
   }
 }
