@@ -46,9 +46,9 @@ namespace Bakery
       string menuOption = "b";
       Console.WriteLine(
 @"                        Select kind of bread you'd like:
-                                [R]ye
-                                [W]hite
-                                W[H]ole Wheat
+                                [R]ye - $6.00
+                                [W]hite - $5.00
+                                W[H]ole Wheat - $6.50
                           (*White bread is buy 2, get one free!
                            Must add 3 to your cart to get the deal
                            All deals are applied on checkout)
@@ -95,8 +95,54 @@ $@"                      {amount} loaves of {breadType} added to your cart.");
 
     public static string PastryMenu()
     {
-      string optionMenu = "t";
-      return optionMenu;
+
+      string pastryType;
+      string menuOption = "p";
+      Console.WriteLine(
+@"                        Select kind of pastry you'd like:
+                                [C]roissant - $2.00
+                                [M]uffin - $2.50
+                                C[O]okie - $1.50
+                          (*Croissants are 1 for $2, 3 for $5
+                           Must add 3 to your cart to get the deal
+                           All deals are applied on checkout)
+                                
+                                ");
+
+
+      pastryType = Console.ReadLine().ToLower();
+
+      PastryPrice(pastryType);
+
+      Console.Write(
+@"                         Please enter quantity:
+
+                                
+                                ");
+      int amount = int.Parse(Console.ReadLine());
+
+      Pastry tempBread = new Pastry(pastryType, amount);
+
+
+      Console.WriteLine(
+$@"                      {amount} loaves of {pastryType} added to your cart.");
+      Console.WriteLine(
+@"                        If you'd like to see our bread menu, press [B].
+                          If you'd like to checkout, press [T]otal.
+                          If you'd like to buy more pastries, press enter.
+                          ");
+      string selection = Console.ReadLine().ToLower();
+
+      if (selection == "b")
+      {
+        menuOption = selection;
+      }
+      else if (selection == "t")
+      {
+        menuOption = selection;
+      }
+
+      return menuOption;
     }
 
     public static void BreadPrice(string type)
@@ -122,10 +168,35 @@ $@"                      {amount} loaves of {breadType} added to your cart.");
       }
     }
 
+    public static void PastryPrice(string type)
+    {
+      if (type == "c")
+      {
+        Console.WriteLine(
+@"                         Croissants are $2.00 (All deals will be applied at checkout");
+      }
+      else if (type == "m")
+      {
+        Console.WriteLine(
+@"                        Muffins are $2.50 each");
+      }
+      else if (type == "o")
+      {
+        Console.WriteLine(
+@"                        Cookies are $1.50 each!");
+      }
+      else
+      {
+        Console.WriteLine("Ok, bakers choice is $2.00 per pastry");
+      }
+    }
+
     public static void TotalPrice()
     {
       int breadTypeCount = 0;
-      decimal total = 0m;
+      decimal breadTotal = 0m;
+      int pastryTypeCount = 0;
+      decimal pastryTotal = 0m;
       //int pastryTypeCount = 0;
 
       foreach (Bread br in Bread.GetBreads())
@@ -149,16 +220,53 @@ $@"                      {amount} loaves of {breadType} added to your cart.");
           name = "Baker's Choice";
         }
         Console.WriteLine($"{name} for ${br.Price}");
-        total += br.Price;
+        breadTotal += br.Price;
       }
 
+
+      foreach (Pastry pas in Pastry.GetPastries())
+      {
+        string name = "";
+        if (pas.Type == "c")
+        {
+          name = "Croissant";
+          pastryTypeCount += 1;
+        }
+        else if (pas.Type == "m")
+        {
+          name = "Muffin";
+        }
+        else if (pas.Type == "o")
+        {
+          name = "Cookie";
+        }
+        else
+        {
+          name = "Baker's Choice";
+        }
+        Console.WriteLine($"{name} for ${pas.Price}");
+        pastryTotal += pas.Price;
+      }
+
+      int pastryDiscount = pastryTypeCount / 3;
+      decimal newPastryPrice = pastryTotal - (pastryDiscount * 1.00m);
+
       int breadDiscount = breadTypeCount / 3;
-      decimal newTotal = total - (breadDiscount * 5.00m);
+      decimal newBreadTotal = breadTotal - (breadDiscount * 5.00m);
+
+      decimal totalPricetag = newPastryPrice + newBreadTotal;
 
       Console.WriteLine(
-$@"                        Your total price before discounts is:{total}
-                         Your total after discounts is: {newTotal}
-                         You got {breadDiscount} loaves for free!");
+$@"                         Your total bread price before discounts is: ${breadTotal}
+                         Your total bread price after discounts is: ${newBreadTotal}
+                         Your total pastry price before discounts is: ${pastryTotal}
+                         Your total pastry price after discount is: ${newPastryPrice}
+                         --
+                         Your total price is: ${totalPricetag}
+                         --
+                         You got {breadDiscount} loaves for free!
+                         You saved ${pastryDiscount * 1.00m} on pastries!");
+
 
       Console.ReadLine();
 
