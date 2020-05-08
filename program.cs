@@ -57,8 +57,8 @@ namespace Bakery
     }
     public static void TotalPrice()
     {
-
-      Console.WriteLine(
+      string receiptHead;
+      receiptHead = (
 $@"              
 
                        ____________________________________________________________
@@ -66,6 +66,7 @@ $@"
                       |        ###Items List###
                       |        ################
                       |    ");
+      Console.WriteLine(receiptHead);
       // int breadTypeCount = 0;
       // decimal breadTotal = 0m;
       // int pastryTypeCount = 0;
@@ -80,7 +81,8 @@ $@"
       decimal pastryPrice = Pastry.TotalPastryPrice();
       decimal newPastryPrice = pastryPrice - pastryDiscount;
       List<string> pastryReceipt = Pastry.GeneratePastryReceipt();
-
+      List<string> receipt = new List<string> { };
+      receipt.Add(receiptHead);
 
 
       decimal totalPricetag = newPastryPrice + newBreadTotal;
@@ -88,13 +90,16 @@ $@"
       foreach (string b in breadReceipt)
       {
         Console.WriteLine(b);
+        receipt.Add(b);
+
       }
 
       foreach (string p in pastryReceipt)
       {
         Console.WriteLine(p);
+        receipt.Add(p);
       }
-      RedBackground(
+      string priceString = (
 $@"                      |                                                                                                                                
                       |  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++   
                       |                                                                                                                            
@@ -108,9 +113,21 @@ $@"                      |
                       |   You saved ${breadDiscount} on bread!                                   
                       |   You saved ${pastryDiscount} on pastries!                                 
                        ---------------------------------------------------------------");
+      Console.WriteLine(priceString);
 
-      Console.ReadLine();
-      Console.ResetColor();
+      receipt.Add(priceString);
+
+      Console.WriteLine($"Would you like to save this receipt? [y/n]");
+      if (Console.ReadLine().ToLower() == "y")
+      {
+        PrintReceipt(receipt);
+      }
+      else
+      {
+        Console.ReadLine();
+        Console.ResetColor();
+      }
+
     }
 
     static void RedBackground(string value)
@@ -118,6 +135,12 @@ $@"                      |
       Console.BackgroundColor = ConsoleColor.Black;
       Console.ForegroundColor = ConsoleColor.Cyan;
       Console.Write(value);
+    }
+
+    public static void PrintReceipt(List<string> rec)
+    {
+      string startupPath = Environment.CurrentDirectory;
+      System.IO.File.WriteAllLines(startupPath + "/WriteLines.txt", rec);
     }
 
 
