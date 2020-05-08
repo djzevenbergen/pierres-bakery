@@ -46,12 +46,14 @@ namespace Bakery
       string menuOption = "b";
       Console.WriteLine(
 @"                        Select kind of bread you'd like:
+                       ------------------------------------                       
                                 [R]ye - $6.00
                                 [W]hite - $5.00
                                 W[H]ole Wheat - $6.50
-                          (*White bread is buy 2, get one free!
-                           Must add 3 to your cart to get the deal
-                           All deals are applied on checkout)
+                       ------------------------------------         
+                        (*White bread is buy 2, get one free!
+                          Must add 3 to your cart to get the deal
+                          All deals are applied on checkout)
                                 
                                 ");
 
@@ -100,14 +102,18 @@ $@"                      {amount} loaves of {breadType} added to your cart.");
       string menuOption = "p";
       Console.WriteLine(
 @"                        Select kind of pastry you'd like:
+                       ------------------------------------                       
                                 [C]roissant - $2.00
                                 [M]uffin - $2.50
                                 C[O]okie - $1.50
-                          (*Croissants are 1 for $2, 3 for $5
-                           Must add 3 to your cart to get the deal
-                           All deals are applied on checkout)
+                       ------------------------------------         
+                        (*Croissants are 1 for $2, 3 for $5
+                          Must add 3 to your cart to get the deal
+                          All deals are applied on checkout)
                                 
                                 ");
+
+
 
 
       pastryType = Console.ReadLine().ToLower();
@@ -150,21 +156,23 @@ $@"                      {amount} loaves of {pastryType} added to your cart.");
       if (type == "r")
       {
         Console.WriteLine(
-@"                         Rye is $6.00 a loaf");
+@"                          Rye is $6.00 a loaf");
       }
       else if (type == "w")
       {
         Console.WriteLine(
-@"                        White bread is $5.00 a loaf (deals will be applied upon checkout)");
+@"                          White bread is $5.00 a loaf 
+                    (deals will be applied upon checkout)");
       }
       else if (type == "h")
       {
         Console.WriteLine(
-@"                        Whole wheat is $6.50 a loaf");
+@"                          Whole wheat is $6.50 a loaf");
       }
       else
       {
-        Console.WriteLine("Ok, bakers choice is $5.00 a loaf");
+        Console.WriteLine(
+@"                      Ok, bakers choice is $5.00 a loaf");
       }
     }
 
@@ -173,21 +181,23 @@ $@"                      {amount} loaves of {pastryType} added to your cart.");
       if (type == "c")
       {
         Console.WriteLine(
-@"                         Croissants are $2.00 (All deals will be applied at checkout");
+@"                           Croissants are $2.00 
+                  (All deals will be applied at checkout)");
       }
       else if (type == "m")
       {
         Console.WriteLine(
-@"                        Muffins are $2.50 each");
+@"                           Muffins are $2.50 each");
       }
       else if (type == "o")
       {
         Console.WriteLine(
-@"                        Cookies are $1.50 each!");
+@"                           Cookies are $1.50 each!");
       }
       else
       {
-        Console.WriteLine("Ok, bakers choice is $2.00 per pastry");
+        Console.WriteLine(
+@"                         Ok, bakers choice is $2.00 per pastry");
       }
     }
 
@@ -269,10 +279,6 @@ $@"                         Your total bread price before discounts is: ${breadT
 
 
       Console.ReadLine();
-
-
     }
-
-
   }
 }
