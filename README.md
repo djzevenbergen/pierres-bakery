@@ -51,12 +51,12 @@ _This C# console application uses custom classes, namespaces, looping, lists, an
       *  You got {breadDiscount} loaves for free!
       *  You saved ${pastryDiscount * 1.00m} on pastries!
 
-
-
-    
+* - Allow the user to save their receipt to .txt file within the root directory
+    * enter "Y" when asked if you would like to save receipt
+    * returns a saved .txt file in the root directory      
 
 ## Known Bugs
-* No Known Bugs
+* User input needs to be accurate. Not much input validation 
 
 ## License
 
