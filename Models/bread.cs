@@ -10,12 +10,15 @@ namespace Bakery.Models
 
     public string Type { get; set; }
 
+    public string Name { get; set; }
+
     private static List<Bread> _instances = new List<Bread> { };
 
     public Bread(string type, int quantity)
     {
       Type = type;
       Price = FindPrice(type);
+      Name = BreadName(type);
 
       for (int i = 1; i <= quantity; i++)
       {
@@ -80,34 +83,15 @@ namespace Bakery.Models
       List<string> receipt = new List<string> { };
       foreach (Bread br in Bread.GetBreads())
       {
-        string name = "";
-        if (br.Type == "w")
-        {
-          name = "White bread";
-        }
-        else if (br.Type == "h")
-        {
-          name = "Whole Wheat";
-        }
-        else if (br.Type == "r")
-        {
-          name = "Rye";
-        }
-        else
-        {
-          name = "Baker's Choice";
-        }
         receipt.Add(
-$@"                         Item: {name} ........... Price: ${br.Price}");
+$@"                      |  Item: {br.Name} ........... Price: ${br.Price}");
       }
       return receipt;
 
     }
     public static void BreadPrice(string type)
     {
-      Console.WriteLine(@"
-      
-      ");
+      Console.WriteLine(@"");
       if (type == "r")
       {
         Console.WriteLine(
@@ -163,9 +147,11 @@ $@"                         Item: {name} ........... Price: ${br.Price}");
 
       Bread tempBread = new Bread(breadType, amount);
 
+      string tempName = tempBread.BreadName(breadType);
+
 
       Console.WriteLine(
-$@"                         {amount} loaves of {breadType} added to your cart.
+$@"                         {amount} loaves of {tempName} added to your cart.
                                             ");
       Console.Write(
 @"                        If you'd like to see our pastry menu, press [P].
@@ -183,10 +169,29 @@ $@"                         {amount} loaves of {breadType} added to your cart.
       {
         menuOption = selection;
       }
-
       return menuOption;
+    }
 
-
+    public string BreadName(string type)
+    {
+      string name = "";
+      if (type == "w")
+      {
+        name = "white bread";
+      }
+      else if (type == "r")
+      {
+        name = "rye";
+      }
+      else if (type == "h")
+      {
+        name = "whole wheat";
+      }
+      else
+      {
+        name = "baker's choice";
+      }
+      return name;
     }
 
 

@@ -59,12 +59,13 @@ namespace Bakery
     {
 
       Console.WriteLine(
-$@"                              ################
-                              ###Items List###
-                              ################
-                        
-                        
-                        ");
+$@"              
+
+                       ____________________________________________________________
+                      |        ################
+                      |        ###Items List###
+                      |        ################
+                      |    ");
       // int breadTypeCount = 0;
       // decimal breadTotal = 0m;
       // int pastryTypeCount = 0;
@@ -94,36 +95,29 @@ $@"                              ################
         Console.WriteLine(p);
       }
       RedBackground(
-$@"                     |                                                               |
-                      |                                                               |
-                      |                                                               |    
-                      |  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++   |
-                      |                                                               |
-                      |                                                               |
-                      |   Your total bread price before discounts is: ${breadPrice}   |
-                      |   Your total bread price after discounts is: ${newBreadTotal} |
-                      |   Your total pastry price before discounts is: ${pastryPrice} |
-                      |   Your total pastry price after discount is: ${newPastryPrice}|
-                      |   --                                                          | 
-                      |   Your total price is: ${totalPricetag}                       |
-                      |   --                                                          |
-                      |   You saved ${breadDiscount} on bread!                        | 
-                      |   You saved ${pastryDiscount} on pastries!                    | 
+$@"                      |                                                                                                                                
+                      |  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++   
+                      |                                                                                                                            
+                      |   Your total bread price before discounts is: ${breadPrice}          
+                      |   Your total bread price after discounts is: ${newBreadTotal}           
+                      |   Your total pastry price before discounts is: ${pastryPrice}          
+                      |   Your total pastry price after discount is: ${newPastryPrice}            
+                      |   --                                                          
+                      |   Your total price is: ${totalPricetag}                                
+                      |   --                                                          
+                      |   You saved ${breadDiscount} on bread!                                   
+                      |   You saved ${pastryDiscount} on pastries!                                 
                        ---------------------------------------------------------------");
 
       Console.ReadLine();
+      Console.ResetColor();
     }
 
     static void RedBackground(string value)
     {
-      //
-      // This method writes an entire line to the console with the string.
-      //
-      Console.BackgroundColor = ConsoleColor.DarkRed;
-      Console.ForegroundColor = ConsoleColor.White;
+      Console.BackgroundColor = ConsoleColor.Black;
+      Console.ForegroundColor = ConsoleColor.Cyan;
       Console.Write(value);
-
-      //Console.ResetColor();
     }
 
 

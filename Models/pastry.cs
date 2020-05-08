@@ -10,12 +10,15 @@ namespace Bakery.Models
 
     public string Type { get; set; }
 
+    public string Name { get; set; }
+
     private static List<Pastry> _instances = new List<Pastry> { };
 
     public Pastry(string type, int quantity)
     {
       Type = type;
       Price = FindPrice(type);
+      Name = PastryName(type);
 
       for (int i = 1; i <= quantity; i++)
       {
@@ -80,25 +83,9 @@ namespace Bakery.Models
       List<string> receipt = new List<string> { };
       foreach (Pastry br in GetPastries())
       {
-        string name = "";
-        if (br.Type == "c")
-        {
-          name = "Croissant";
-        }
-        else if (br.Type == "m")
-        {
-          name = "Muffin";
-        }
-        else if (br.Type == "o")
-        {
-          name = "Cookie";
-        }
-        else
-        {
-          name = "Baker's Choice";
-        }
+
         receipt.Add(
-$@"                         Item: {name} ........... Price: ${br.Price}");
+$@"                      |  Item: {br.Name} ........... Price: ${br.Price}");
       }
 
       return receipt;
@@ -108,9 +95,7 @@ $@"                         Item: {name} ........... Price: ${br.Price}");
 
     public static void PastryPrice(string type)
     {
-      Console.WriteLine(@"
-      
-      ");
+      Console.WriteLine(@"");
       if (type == "c")
       {
         Console.WriteLine(
@@ -169,11 +154,11 @@ $@"                         Item: {name} ........... Price: ${br.Price}");
       int amount = int.Parse(Console.ReadLine());
 
       Pastry tempBread = new Pastry(pastryType, amount);
-
+      string tempName = tempBread.PastryName(pastryType);
 
       Console.WriteLine(
 $@"                         
-                          {amount} {pastryType}s added to your cart.");
+                          {amount} {tempName}s added to your cart.");
       Console.Write(
 @"                         
                           If you'd like to see our bread menu, press [B].
@@ -194,6 +179,28 @@ $@"
       }
 
       return menuOption;
+    }
+
+    public string PastryName(string type)
+    {
+      string name = "";
+      if (type == "c")
+      {
+        name = "croissant";
+      }
+      else if (type == "m")
+      {
+        name = "muffin";
+      }
+      else if (type == "o")
+      {
+        name = "cookie";
+      }
+      else
+      {
+        name = "baker's choice";
+      }
+      return name;
     }
 
 
