@@ -27,6 +27,8 @@ namespace Bakery
                           Would you like some: 
                                 [B]read
                                 [P]astries
+
+                                
                                 ");
 
       string resp = Console.ReadLine().ToLower();
@@ -57,88 +59,57 @@ namespace Bakery
     {
 
       Console.WriteLine(
-$@"                        ################
-                        ###Items List###
-                        ################");
-      int breadTypeCount = 0;
-      decimal breadTotal = 0m;
-      int pastryTypeCount = 0;
-      decimal pastryTotal = 0m;
+$@"                              ################
+                              ###Items List###
+                              ################
+                        
+                        
+                        ");
+      // int breadTypeCount = 0;
+      // decimal breadTotal = 0m;
+      // int pastryTypeCount = 0;
+      // decimal pastryTotal = 0m;
       //int pastryTypeCount = 0;
 
-      foreach (Bread br in Bread.GetBreads())
-      {
-        string name = "";
-        if (br.Type == "w")
-        {
-          name = "White bread";
-          breadTypeCount += 1;
-        }
-        else if (br.Type == "h")
-        {
-          name = "Whole Wheat";
-        }
-        else if (br.Type == "r")
-        {
-          name = "Rye";
-        }
-        else
-        {
-          name = "Baker's Choice";
-        }
-        Console.WriteLine(
-$@"                         Item: {name} ........... Price: ${br.Price}");
-        breadTotal += br.Price;
-      }
+      decimal breadDiscount = Bread.CalculateBreadDiscount();
+      decimal breadPrice = Bread.TotalBreadPrice();
+      decimal newBreadTotal = breadPrice - breadDiscount;
+      List<string> breadReceipt = Bread.GenerateBreadReceipt();
+      decimal pastryDiscount = Pastry.CalculatePastryDiscount();
+      decimal pastryPrice = Pastry.TotalPastryPrice();
+      decimal newPastryPrice = pastryPrice - pastryDiscount;
+      List<string> pastryReceipt = Pastry.GeneratePastryReceipt();
 
 
-      foreach (Pastry pas in Pastry.GetPastries())
-      {
-        string name = "";
-        if (pas.Type == "c")
-        {
-          name = "Croissant";
-          pastryTypeCount += 1;
-        }
-        else if (pas.Type == "m")
-        {
-          name = "Muffin";
-        }
-        else if (pas.Type == "o")
-        {
-          name = "Cookie";
-        }
-        else
-        {
-          name = "Baker's Choice";
-        }
-        Console.WriteLine(
-$@"                         Item: {name} ........... Price: ${pas.Price}");
-        pastryTotal += pas.Price;
-      }
-
-      int pastryDiscount = pastryTypeCount / 3;
-      decimal newPastryPrice = pastryTotal - (pastryDiscount * 1.00m);
-
-      int breadDiscount = breadTypeCount / 3;
-      decimal newBreadTotal = breadTotal - (breadDiscount * 5.00m);
 
       decimal totalPricetag = newPastryPrice + newBreadTotal;
 
-      RedBackground(
-$@"                        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                         Your total bread price before discounts is: ${breadTotal}
-                         Your total bread price after discounts is: ${newBreadTotal}
-                         Your total pastry price before discounts is: ${pastryTotal}
-                         Your total pastry price after discount is: ${newPastryPrice}
-                         --
-                         Your total price is: ${totalPricetag}
-                         --
-                         You got {breadDiscount} loaves for free!
-                         You saved ${pastryDiscount * 1.00m} on pastries!
-                         bread.totalbreadprice: {Bread.TotalBreadPrice()}
-                         pastry.totalpastryprice: {Pastry.TotalPastryPrice()}");
+      foreach (string b in breadReceipt)
+      {
+        Console.WriteLine(b);
+      }
 
+      foreach (string p in pastryReceipt)
+      {
+        Console.WriteLine(p);
+      }
+      RedBackground(
+$@"                     |                                                               |
+                      |                                                               |
+                      |                                                               |    
+                      |  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++   |
+                      |                                                               |
+                      |                                                               |
+                      |   Your total bread price before discounts is: ${breadPrice}   |
+                      |   Your total bread price after discounts is: ${newBreadTotal} |
+                      |   Your total pastry price before discounts is: ${pastryPrice} |
+                      |   Your total pastry price after discount is: ${newPastryPrice}|
+                      |   --                                                          | 
+                      |   Your total price is: ${totalPricetag}                       |
+                      |   --                                                          |
+                      |   You saved ${breadDiscount} on bread!                        | 
+                      |   You saved ${pastryDiscount} on pastries!                    | 
+                       ---------------------------------------------------------------");
 
       Console.ReadLine();
     }
@@ -150,7 +121,7 @@ $@"                        +++++++++++++++++++++++++++++++++++++++++++++++++++++
       //
       Console.BackgroundColor = ConsoleColor.DarkRed;
       Console.ForegroundColor = ConsoleColor.White;
-      Console.WriteLine(value);
+      Console.Write(value);
 
       //Console.ResetColor();
     }

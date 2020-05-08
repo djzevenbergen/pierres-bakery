@@ -61,13 +61,61 @@ namespace Bakery.Models
       return total;
     }
 
+    public static decimal CalculatePastryDiscount()
+    {
+      int pastryTypeCount = 0;
+      foreach (Pastry br in GetPastries())
+      {
+        if (br.Type == "c")
+        {
+          pastryTypeCount += 1;
+        }
+      }
+      decimal totalDiscount = (pastryTypeCount / 3) * 1.00m;
+      return totalDiscount;
+    }
+
+    public static List<string> GeneratePastryReceipt()
+    {
+      List<string> receipt = new List<string> { };
+      foreach (Pastry br in GetPastries())
+      {
+        string name = "";
+        if (br.Type == "c")
+        {
+          name = "Croissant";
+        }
+        else if (br.Type == "m")
+        {
+          name = "Muffin";
+        }
+        else if (br.Type == "o")
+        {
+          name = "Cookie";
+        }
+        else
+        {
+          name = "Baker's Choice";
+        }
+        receipt.Add(
+$@"                         Item: {name} ........... Price: ${br.Price}");
+      }
+
+      return receipt;
+
+    }
+
+
     public static void PastryPrice(string type)
     {
+      Console.WriteLine(@"
+      
+      ");
       if (type == "c")
       {
         Console.WriteLine(
-@"                           Croissants are $2.00 
-                  (All deals will be applied at checkout)");
+@"                                 Croissants are $2.00 
+                      (All deals will be applied at checkout)");
       }
       else if (type == "m")
       {
@@ -91,8 +139,10 @@ namespace Bakery.Models
 
       string pastryType;
       string menuOption = "p";
-      Console.WriteLine(
-@"                        Select kind of pastry you'd like:
+      Console.Write(
+@"                  
+                  
+                        Select kind of pastry you'd like:
                        ------------------------------------                       
                                 [C]roissant - $2.00
                                 [M]uffin - $2.50
@@ -102,7 +152,7 @@ namespace Bakery.Models
                           Must add 3 to your cart to get the deal
                           All deals are applied on checkout)
                                 
-                                ");
+                                        ");
 
 
 
@@ -112,7 +162,7 @@ namespace Bakery.Models
       Pastry.PastryPrice(pastryType);
 
       Console.Write(
-@"                         Please enter quantity:
+@"                            Please enter quantity:
 
                                 
                                 ");
@@ -122,12 +172,16 @@ namespace Bakery.Models
 
 
       Console.WriteLine(
-$@"                      {amount} loaves of {pastryType} added to your cart.");
-      Console.WriteLine(
-@"                        If you'd like to see our bread menu, press [B].
+$@"                         
+                          {amount} {pastryType}s added to your cart.");
+      Console.Write(
+@"                         
+                          If you'd like to see our bread menu, press [B].
                           If you'd like to checkout, press [T]otal.
                           If you'd like to buy more pastries, press enter.
-                          ");
+
+
+                                ");
       string selection = Console.ReadLine().ToLower();
 
       if (selection == "b")

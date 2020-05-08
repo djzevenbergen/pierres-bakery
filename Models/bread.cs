@@ -61,8 +61,53 @@ namespace Bakery.Models
       return total;
     }
 
+    public static decimal CalculateBreadDiscount()
+    {
+      int breadTypeCount = 0;
+      foreach (Bread br in GetBreads())
+      {
+        if (br.Type == "w")
+        {
+          breadTypeCount += 1;
+        }
+      }
+      decimal totalDiscount = (breadTypeCount / 3) * 5.00m;
+      return totalDiscount;
+    }
+
+    public static List<string> GenerateBreadReceipt()
+    {
+      List<string> receipt = new List<string> { };
+      foreach (Bread br in Bread.GetBreads())
+      {
+        string name = "";
+        if (br.Type == "w")
+        {
+          name = "White bread";
+        }
+        else if (br.Type == "h")
+        {
+          name = "Whole Wheat";
+        }
+        else if (br.Type == "r")
+        {
+          name = "Rye";
+        }
+        else
+        {
+          name = "Baker's Choice";
+        }
+        receipt.Add(
+$@"                         Item: {name} ........... Price: ${br.Price}");
+      }
+      return receipt;
+
+    }
     public static void BreadPrice(string type)
     {
+      Console.WriteLine(@"
+      
+      ");
       if (type == "r")
       {
         Console.WriteLine(
@@ -91,7 +136,7 @@ namespace Bakery.Models
 
       string breadType;
       string menuOption = "b";
-      Console.WriteLine(
+      Console.Write(
 @"                        Select kind of bread you'd like:
                        ------------------------------------                       
                                 [R]ye - $6.00
@@ -102,7 +147,7 @@ namespace Bakery.Models
                           Must add 3 to your cart to get the deal
                           All deals are applied on checkout)
                                 
-                                ");
+                                       ");
 
 
       breadType = Console.ReadLine().ToLower();
@@ -113,19 +158,21 @@ namespace Bakery.Models
 @"                         Please enter quantity:
 
                                 
-                                ");
+                                    ");
       int amount = int.Parse(Console.ReadLine());
 
       Bread tempBread = new Bread(breadType, amount);
 
 
       Console.WriteLine(
-$@"                      {amount} loaves of {breadType} added to your cart.");
-      Console.WriteLine(
+$@"                         {amount} loaves of {breadType} added to your cart.
+                                            ");
+      Console.Write(
 @"                        If you'd like to see our pastry menu, press [P].
-                          If you'd like to checkout, press [T]otal.
-                          If you'd like to buy more bread, press enter.
-                          ");
+                        If you'd like to checkout, press [T]otal.
+                        If you'd like to buy more bread, press enter.
+
+                                          ");
       string selection = Console.ReadLine().ToLower();
 
       if (selection == "p")
