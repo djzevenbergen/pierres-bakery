@@ -34,7 +34,8 @@ namespace Bakery
 
       if (resp == "t")
       {
-
+        foreach (Bread br in Bread.GetBreads())
+          Console.WriteLine(br.GetType());
       }
     }
 
@@ -84,28 +85,28 @@ $@"                      {amount} loaves of {breadType} added to your cart.");
         menuOption = selection;
       }
 
-
-
+      return menuOption;
 
 
     }
 
     public static string PastryMenu()
     {
-
+      string optionMenu = "t";
+      return optionMenu;
     }
 
     public static void BreadPrice(string type)
     {
-      if (type = "r")
+      if (type == "r")
       {
         Console.WriteLine("Rye is $6.00 a loaf (deals will be applied upon checkout)");
       }
-      else if (type = "w")
+      else if (type == "w")
       {
         Console.WriteLine("White bread is $5.00 a loaf (deals will be applied upon checkout)");
       }
-      else if (type = "h")
+      else if (type == "h")
       {
         Console.WriteLine("Whole wheat is $6.50 a loaf (deals will be applied upon checkout)");
       }
