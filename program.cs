@@ -35,15 +35,20 @@ namespace Bakery
 
       string resp = Console.ReadLine().ToLower();
 
-      while (resp == "b")
+      while (resp != "t")
       {
-        resp = BreadMenu();
 
-      }
+        if (resp == "b")
+        {
+          resp = BreadMenu();
 
-      while (resp == "p")
-      {
-        resp = PastryMenu();
+        }
+
+        else
+        {
+          resp = PastryMenu();
+        }
+
       }
 
       if (resp == "t")
@@ -290,7 +295,8 @@ $@"                         Your total bread price before discounts is: ${breadT
                          --
                          You got {breadDiscount} loaves for free!
                          You saved ${pastryDiscount * 1.00m} on pastries!
-                         bread.totalbreadprice: {Bread.TotalBreadPrice()}");
+                         bread.totalbreadprice: {Bread.TotalBreadPrice()}
+                         pastry.totalpastryprice: {Pastry.TotalPastryPrice()}");
 
 
       Console.ReadLine();
