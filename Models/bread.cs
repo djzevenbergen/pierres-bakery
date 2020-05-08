@@ -151,7 +151,8 @@ $@"                      |  Item: {br.Name} ........... Price: ${br.Price}");
 
 
       Console.WriteLine(
-$@"                         {amount} loaves of {tempName} added to your cart.
+$@"                        
+                        {amount} loaves of {tempName} added to your cart.
                                             ");
       Console.Write(
 @"                        If you'd like to see our pastry menu, press [P].
