@@ -140,7 +140,7 @@ $@"                      |
     public static void PrintReceipt(List<string> rec)
     {
       string startupPath = Environment.CurrentDirectory;
-      System.IO.File.WriteAllLines(startupPath + "/WriteLines.txt", rec);
+      System.IO.File.WriteAllLines(startupPath + "/PierresBakeryReceipt.txt", rec);
     }
 
 
