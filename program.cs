@@ -34,9 +34,9 @@ namespace Bakery
 
       if (resp == "t")
       {
-        foreach (Bread br in Bread.GetBreads())
-          Console.WriteLine(br.GetType());
+        TotalPrice();
       }
+
     }
 
     public static string BreadMenu()
@@ -49,6 +49,9 @@ namespace Bakery
                                 [R]ye
                                 [W]hite
                                 W[H]ole Wheat
+                          (*White bread is buy 2, get one free!
+                           Must add 3 to your cart to get the deal
+                           All deals are applied on checkout)
                                 
                                 ");
 
@@ -100,20 +103,68 @@ $@"                      {amount} loaves of {breadType} added to your cart.");
     {
       if (type == "r")
       {
-        Console.WriteLine("Rye is $6.00 a loaf (deals will be applied upon checkout)");
+        Console.WriteLine(
+@"                         Rye is $6.00 a loaf");
       }
       else if (type == "w")
       {
-        Console.WriteLine("White bread is $5.00 a loaf (deals will be applied upon checkout)");
+        Console.WriteLine(
+@"                        White bread is $5.00 a loaf (deals will be applied upon checkout)");
       }
       else if (type == "h")
       {
-        Console.WriteLine("Whole wheat is $6.50 a loaf (deals will be applied upon checkout)");
+        Console.WriteLine(
+@"                        Whole wheat is $6.50 a loaf");
       }
       else
       {
-        Console.WriteLine("Ok, bakers choice is $5.00 a loaf (deals will be applied upon checkout) ");
+        Console.WriteLine("Ok, bakers choice is $5.00 a loaf");
       }
     }
+
+    public static void TotalPrice()
+    {
+      int breadTypeCount = 0;
+      decimal total = 0m;
+      //int pastryTypeCount = 0;
+
+      foreach (Bread br in Bread.GetBreads())
+      {
+        string name = "";
+        if (br.Type == "w")
+        {
+          name = "White bread";
+          breadTypeCount += 1;
+        }
+        else if (br.Type == "h")
+        {
+          name = "Whole Wheat";
+        }
+        else if (br.Type == "r")
+        {
+          name = "Rye";
+        }
+        else
+        {
+          name = "Baker's Choice";
+        }
+        Console.WriteLine($"{name} for ${br.Price}");
+        total += br.Price;
+      }
+
+      int breadDiscount = breadTypeCount / 3;
+      decimal newTotal = total - (breadDiscount * 5.00m);
+
+      Console.WriteLine(
+$@"                        Your total price before discounts is:{total}
+                         Your total after discounts is: {newTotal}
+                         You got {breadDiscount} loaves for free!");
+
+      Console.ReadLine();
+
+
+    }
+
+
   }
 }
