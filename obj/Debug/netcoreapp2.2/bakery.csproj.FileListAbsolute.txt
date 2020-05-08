@@ -1,0 +1,11 @@
+C:\Users\doogi\desktop\epicodus-friday-projects\pierres-bakery\obj\Debug\netcoreapp2.2\bakery.csprojAssemblyReference.cache
+C:\Users\doogi\desktop\epicodus-friday-projects\pierres-bakery\obj\Debug\netcoreapp2.2\bakery.csproj.CoreCompileInputs.cache
+C:\Users\doogi\desktop\epicodus-friday-projects\pierres-bakery\obj\Debug\netcoreapp2.2\bakery.AssemblyInfoInputs.cache
+C:\Users\doogi\desktop\epicodus-friday-projects\pierres-bakery\obj\Debug\netcoreapp2.2\bakery.AssemblyInfo.cs
+C:\Users\doogi\desktop\epicodus-friday-projects\pierres-bakery\bin\Debug\netcoreapp2.2\bakery.deps.json
+C:\Users\doogi\desktop\epicodus-friday-projects\pierres-bakery\bin\Debug\netcoreapp2.2\bakery.runtimeconfig.json
+C:\Users\doogi\desktop\epicodus-friday-projects\pierres-bakery\bin\Debug\netcoreapp2.2\bakery.runtimeconfig.dev.json
+C:\Users\doogi\desktop\epicodus-friday-projects\pierres-bakery\bin\Debug\netcoreapp2.2\bakery.dll
+C:\Users\doogi\desktop\epicodus-friday-projects\pierres-bakery\bin\Debug\netcoreapp2.2\bakery.pdb
+C:\Users\doogi\desktop\epicodus-friday-projects\pierres-bakery\obj\Debug\netcoreapp2.2\bakery.dll
+C:\Users\doogi\desktop\epicodus-friday-projects\pierres-bakery\obj\Debug\netcoreapp2.2\bakery.pdb
