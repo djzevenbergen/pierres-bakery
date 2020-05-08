@@ -51,5 +51,15 @@ namespace Bakery.Models
       return precio;
     }
 
+    public static decimal TotalBreadPrice()
+    {
+      decimal total = 0.00m;
+      foreach (Bread b in GetBreads())
+      {
+        total += b.Price;
+      }
+      return total;
+    }
+
   }
 }

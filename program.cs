@@ -275,7 +275,8 @@ $@"                         Your total bread price before discounts is: ${breadT
                          Your total price is: ${totalPricetag}
                          --
                          You got {breadDiscount} loaves for free!
-                         You saved ${pastryDiscount * 1.00m} on pastries!");
+                         You saved ${pastryDiscount * 1.00m} on pastries!
+                         bread.totalbreadprice: {Bread.TotalBreadPrice()}");
 
 
       Console.ReadLine();
