@@ -11,7 +11,7 @@ namespace Bakery
     public static void Main()
     {
 
-      Console.WriteLine(
+      RedBackground(
 @"                      
 
   _____ _____ ______ _____  _____  ______ _       ____          _  ________ _______     __
@@ -281,7 +281,7 @@ $@"                      {amount} loaves of {pastryType} added to your cart.");
 
       decimal totalPricetag = newPastryPrice + newBreadTotal;
 
-      WriteFullLine(
+      RedBackground(
 $@"                         Your total bread price before discounts is: ${breadTotal}
                          Your total bread price after discounts is: ${newBreadTotal}
                          Your total pastry price before discounts is: ${pastryTotal}
@@ -298,18 +298,16 @@ $@"                         Your total bread price before discounts is: ${breadT
       Console.ReadLine();
     }
 
-    static void WriteFullLine(string value)
+    static void RedBackground(string value)
     {
       //
       // This method writes an entire line to the console with the string.
       //
-      Console.BackgroundColor = ConsoleColor.DarkGreen;
+      Console.BackgroundColor = ConsoleColor.DarkRed;
       Console.ForegroundColor = ConsoleColor.White;
-      Console.WriteLine(value.PadRight(Console.WindowWidth - 1)); // <-- see note
-                                                                  //
-                                                                  // Reset the color.
-                                                                  //
-      Console.ResetColor();
+      Console.WriteLine(value);
+
+      //Console.ResetColor();
     }
 
 
